@@ -1,16 +1,55 @@
-//promises
-function calculoRapidinho(n){
-  return n >= 0 ?Promise.resolve( n * (n+1) / 2) : Promise.reject('Somente positivos')
-  //se n >= 0, devolva uma promise fullfilled com o resultado correspondente
-
-  //caso contrário, devolva uma promise rejected dizendo somente valores positivos, por favor  
+// async function hello(nome){
+//   return 'Oi ' + nome
+// }
+// const boasVindas = hello('João')
+// console.log(boasVindas)
+// boasVindas.then(res => console.log(res))
+function fatorial(n){
+  if (n < 0) return Promise.reject("Valor não pode ser negativo")
+  let res = 1
+  for (let i = 2; i <= n; i++) res *= i
+  return Promise.resolve(res)
 }
+
+function chamadaComThenCatch(){
+  fatorial(5)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  fatorial(-1)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+}
+chamadaComThenCatch()
+
+async function chamadaComAwait(){
+  try{
+    const f2 = await fatorial(-1)
+    console.log(f2)
+  } catch(err){
+    console.log(err)
+  }
+  try{
+    const f1 = await fatorial(5)
+    console.log(f1)
+  } catch(err){
+    console.log(err)
+  }
+}
+chamadaComAwait()
+
+// //promises
+// function calculoRapidinho(n){
+//   return n >= 0 ?Promise.resolve( n * (n+1) / 2) : Promise.reject('Somente positivos')
+//   //se n >= 0, devolva uma promise fullfilled com o resultado correspondente
+
+//   //caso contrário, devolva uma promise rejected dizendo somente valores positivos, por favor  
+// }
 
 //teste da seguinte forma
 
-calculoRapidinho(10).then((res) => console.log(res), (erro) => console.log(`Erro: ${erro}`))
+// calculoRapidinho(10).then((res) => console.log(res), (erro) => console.log(`Erro: ${erro}`))
 
-calculoRapidinho(-1).then((res) => console.log(res), (erro) => console.log(`Erro: ${erro}`))
+// calculoRapidinho(-1).then((res) => console.log(res), (erro) => console.log(`Erro: ${erro}`))
 // calculoRapidinho(10)
 // .then(resultado => console.log(resultado))
 // .catch(erro => console.log(`Erro: ${erro}`))
