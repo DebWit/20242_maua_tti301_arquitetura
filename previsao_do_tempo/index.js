@@ -10,6 +10,7 @@ const UNITS = process.env.UNITS
 const LANG = process.env.LANG
 
 const url = `${PROTOCOL}://${BASE_URL}?q=${Q}&appid=${APP_ID}&units=${UNITS}&lang=${LANG}`
+const url = `${PROTOCOL}://${BASE_URL}?q=${Q}&appid=${APP_ID}&units=${UNITS}&lang=${LANG}`
 
 axios
     .get(url)
